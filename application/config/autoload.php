@@ -40,7 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-$autoload['packages'] = array(APPPATH . 'third_party/caboose/');
+$autoload['packages'] = array(APPPATH . 'third_party/caboose/', APPPATH.'third_party/restful/');
 /*
 | -------------------------------------------------------------------
 |  Auto-load Libraries
@@ -132,4 +132,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('categories','menu', 'order');
+$autoload['model'] = array('menu');
