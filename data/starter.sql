@@ -28,7 +28,13 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `Categories`;
 
-DROP TABLE IF EXISTS `ci_sessions`;
+CREATE TABLE `ci_sessions` (
+  `id` varchar(128) NOT NULL,
+  `ip_address` varchar(45) NOT NULL,
+  `timestamp` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `data` blob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 DROP TABLE IF EXISTS `Menu`;
 CREATE TABLE `Menu` (
@@ -69,3 +75,6 @@ DROP TABLE IF EXISTS `Orderitems`;
 --
 
 DROP TABLE IF EXISTS `Orders`;
+
+ALTER TABLE `ci_sessions`
+  ADD KEY `ci_sessions_timestamp` (`timestamp`);
