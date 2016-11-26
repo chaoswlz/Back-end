@@ -14,20 +14,33 @@ class Maintenance extends Rest_Controller {
 	}
 	// Handle an incoming GET ... 	returns a list of ports
 	// Handle an incoming GET ... return a menu item or all of them
+        // Handle an incoming GET ... return a menu item or all of them
         function index_get()
         {
-            $key = $this->get('code');
+            $key = $this->get('id');
             if (!$key)
+            {
+                $this->response($this->menu->all(), 200);
+            } else
+            {
+                $result = $this->menu->get($key);
+                if ($result != null)
+                    $this->response($result, 200);
+                else
+                    $this->response(array('error' => 'Menu item not found!'), 404);
+            }
+        }
+        
+        
+        // Handle an incoming GET ... return 1 menu item
+        function item_get()
         {
-            $this->response($this->menu->all(), 200);
-        } else
-        {
+            $key = $this->get('id');
             $result = $this->menu->get($key);
             if ($result != null)
                 $this->response($result, 200);
             else
-            $this->response(array('error' => 'Menu item not found!'), 404);
-           }
+                $this->response(array('error' => 'Menu item not found!'), 404);        
         }
         
         // Handle an incoming POST - add a new menu item
